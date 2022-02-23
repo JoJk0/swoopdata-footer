@@ -1,0 +1,12 @@
+{
+  "name": "John Bennett",
+  "position": "CEO - Chief Executive Officer",
+  "officePhoneNumber": "+44(0) 330 088 6689",
+  "mobilePhoneNumber": "+44(0) 7384 440 961",
+  "emailAddress": "jb@swoopdata.com",
+  "websiteUrl": "www.swoopdata.com",
+  "emailIcon": "./assets/at.svg",
+  "mobilePhoneIcon": "./assets/phone.svg",
+  "officePhoneIcon": "./assets/phone-ip.svg",
+  "webIcon": "./assets/wikis.svg"
+}

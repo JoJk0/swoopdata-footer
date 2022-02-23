@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> </head>
+
+  <body>
+    <div class="container">
+      <div class="foot">
+        <div class="title">{{ name }}</div>
+        <div class="position">{{ position }}</div>
+      </div>
+      <img src="{{ logo }}" class="logo" />
+      <div class="contacts">
+        <div class="contact">
+          <img src="{{ officePhoneIcon }}" class="icon" />
+          <a href="tel:{{ officePhoneNumber }}" class="contactText"
+            >{{ officePhoneNumber }}</a
+          >
+        </div>
+        <div class="contact">
+          <img src="{{ mobilePhoneIcon }}" class="icon" />
+          <a href="tel:{{ mobilePhoneNumber }}" class="contactText"
+            >{{ mobilePhoneNumber }}</a
+          >
+        </div>
+        <div class="contact">
+          <img src="{{ emailIcon }}" class="icon" style="color: #fff" />
+          <a href="mailto:{{ emailAddress }}" class="contactText"
+            >{{ emailAddress }}</a
+          >
+        </div>
+        <div class="contact">
+          <img src="{{ webIcon }}" class="icon" />
+          <a href="{{ websiteUrl }}" class="contactText">{{ websiteUrl }}</a>
+        </div>
+      </div>
+      <div class="clause">
+        <p>
+          Confidentiality Notice | This e-mail message, including any
+          attachments, is for the sole use of the intended recipient(s) and may
+          contain confidential, proprietary, or legally privileged information.
+          Any unauthorised review, use, disclosure or distribution is prohibited
+          and may be unlawful. If you are not the intended recipient(s),
+          immediately contact the sender by reply e-mail and destroy all copies
+          and formats of the original message and any subsequent and/or related
+          messages. Nothing in this e-mail shall be construed as a
+          representation, commitment or undertaking by Swoop Datacom Ltd unless
+          expressly stated to be such.
+        </p>
+        <p>
+          WARNING: Computer viruses can be transmitted by email. The recipient
+          should check this email and any attachments for the presence of
+          viruses. Swoop Datacom Ltd accepts no liability for any damage caused
+          by any virus transmitted by this email or any attachments. Please
+          consider the environment before printing this email.
+        </p>
+        <p>
+          Swoop Datacom Ltd, Registered in England & Wales, Company No 09656787
+          Registered Office, The Rainhall Centre, Rainhall Road, Barnoldswick,
+          Lancashire, BB18 5DR Director and Secretary: Mr John Robert Bennett,
+          Director: Mr David Wilfred Kirsopp
+        </p>
+      </div>
+    </div>
+    <style type="text/css">
+      .foot {
+        display: flex;
+        flex-direction: column;
+        margin-top: 2em;
+      }
+
+      .title {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 0.5em;
+      }
+
+      .position {
+        opacity: 0.5;
+      }
+
+      .container {
+        max-width: 70em;
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+        padding: 2em;
+      }
+
+      .logo {
+        width: 25em;
+      }
+
+      .contacts {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5em;
+      }
+
+      .contact {
+        display: flex;
+        flex-direction: row;
+        gap: 1.5em;
+        align-items: center;
+      }
+
+      .contactText {
+        text-decoration: none;
+        color: unset;
+      }
+
+      .icon {
+        width: 2em;
+        height: 2em;
+      }
+
+      .clause {
+        font-size: 0.8em;
+        color: #999;
+      }
+    </style>
+  </body>
+</html>
