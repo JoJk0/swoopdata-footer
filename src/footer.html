@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head> </head>
+  <head>
+    <meta name="color-scheme" content="light only" />
+    <meta name="supported-color-schemes" content="light only" />
+  </head>
 
   <body>
     <div class="container">
@@ -23,7 +26,7 @@
           >
         </div>
         <div class="contact">
-          <img src="{{ emailIcon }}" class="icon" style="color: #fff" />
+          <img src="{{ emailIcon }}" class="icon" />
           <a href="mailto:{{ emailAddress }}" class="contactText"
             >{{ emailAddress }}</a
           >
@@ -63,9 +66,7 @@
     </div>
     <style type="text/css">
       .foot {
-        display: flex;
-        flex-direction: column;
-        margin-top: 2em;
+        margin: 2em 0;
       }
 
       .title {
@@ -80,42 +81,42 @@
 
       .container {
         max-width: 70em;
-        display: flex;
-        flex-direction: column;
-        gap: 2em;
         padding: 2em;
       }
 
       .logo {
         width: 25em;
+        margin: 2em 0;
       }
 
       .contacts {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5em;
+        margin: 2rem 0;
       }
 
       .contact {
-        display: flex;
-        flex-direction: row;
-        gap: 1.5em;
-        align-items: center;
+        margin: 1.5rem 0;
       }
 
       .contactText {
         text-decoration: none;
         color: unset;
+
+        display: inline-block;
+        padding: 0.25rem;
+        padding-left: 1rem;
       }
 
       .icon {
-        width: 2em;
-        height: 2em;
+        width: 1.75rem;
+        height: 1.75rem;
+        display: inline-block;
+        float: left;
       }
 
       .clause {
         font-size: 0.8em;
         color: #999;
+        margin: 2em 0;
       }
     </style>
   </body>

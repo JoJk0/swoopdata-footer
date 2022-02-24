@@ -1,13 +1,13 @@
-  body {
-    background-color: #fff;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    color: #273140;
-  }
+body {
+  /* background-color: #fff;. */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #273140;
+}
 
-  @media (prefers-color-scheme: dark) {
-    body {
-      background-color: #273140;
-      color: #fff;
-    }
+@media (prefers-color-scheme: dark) {
+  body {
+    /* background-color: #273140; */
+    color: #fff;
   }
+}
