@@ -1,64 +1,128 @@
 <template>
-    <form @submit.prevent="generate">
+    <div class="cnt">
         <div class="container">
             <h1>Swoop Datacom footer generator</h1>
-            <input v-model="name" type="text" name="name" placeholder="Your name..." />
-            <input v-model="position" type="text" name="position" placeholder="Your position..." />
-            <input
-                v-model="officePhone"
-                type="tel"
-                name="office-phone"
-                placeholder="Office phone number..."
-            />
-            <input
-                v-model="mobilePhone"
-                type="tel"
-                name="mobile-phone"
-                placeholder="Your mobile phone number..."
-            />
-            <input v-model="email" type="email" name="email" placeholder="Your email address..." />
-            <input v-model="website" type="url" name="website" placeholder="Website URL..." />
-            <button type="submit">Generate</button>
+            <form @submit.prevent="copy">
+                <input v-model="name" type="text" name="name" placeholder="Your name..." />
+                <input
+                    v-model="position"
+                    type="text"
+                    name="position"
+                    placeholder="Your position..."
+                />
+                <input
+                    v-model="officePhone"
+                    type="tel"
+                    name="office-phone"
+                    placeholder="Office phone number..."
+                />
+                <input
+                    v-model="mobilePhone"
+                    type="tel"
+                    name="mobile-phone"
+                    placeholder="Your mobile phone number..."
+                />
+                <input
+                    v-model="email"
+                    type="email"
+                    name="email"
+                    placeholder="Your email address..."
+                />
+                <input v-model="website" type="url" name="website" placeholder="Website URL..." />
+                <button type="submit">Copy</button>
+            </form>
+            <div class="info" v-if="info">{{ info }}</div>
+            <div class="instructions">
+                <div class="title">Install instructions (with HTML file)</div>
+                <ol>
+                    <li>
+                        <p>Download and install Email Signature Rescue</p>
+                        <p style="display: flex; gap: 1em;">
+                            <a href="https://bit.ly/esr-windows-installer-3062-1">
+                                <button target="_blank">Download for Windows</button>
+                            </a>
+                            <a href="https://bit.ly/esr-mac-installer-3118-1">
+                                <button target="_blank">Download for macOS</button>
+                            </a>
+                        </p>
+                    </li>
+                    <li>
+                        <p>Download generated HTML Signature</p>
+                        <p>
+                            <button @click="download">Generate HTML file</button>
+                        </p>
+                    </li>
+                    <li>Open Email Signature Rescue</li>
+                    <li>Select your E-mail app and your email address</li>
+                    <li>Select "Add Signature"</li>
+                    <li>Click "USE FILE"</li>
+                    <li>Choose HTML generated file</li>
+                    <li>Install signature</li>
+                </ol>
+                <a
+                    href="https://emailsignaturerescue.com/"
+                    style="opacity: 0.5"
+                    target="_blank"
+                >Visit Email Signature Rescue website</a>
+            </div>
         </div>
-    </form>
+        <div class="renderer" v-html="renderer" ref="rendererEl"></div>
+    </div>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
-import template from './generated/footer-inlined.html';
+import { computed, onMounted, ref } from 'vue'
+import template from './footer.mjml';
 
-import emailAsset from './assets/at.svg';
-import logoAsset from './assets/logo.svg';
-import officePhoneAsset from './assets/phone-ip.svg';
-import mobilePhoneAsset from './assets/phone.svg';
-import webAsset from './assets/wikis.svg';
+import mjml2html from 'mjml-browser';
 
-type Props = {
-    name: string;
-    position: string;
-    officePhoneNumber: string;
-    mobilePhoneNumber: string;
-    emailAddress: string;
-    websiteUrl: string;
-};
+const name = ref('Jakub Janisz')
+const position = ref('Full-Stack Developer')
+const officePhone = ref('+447946418503')
+const mobilePhone = ref('+447946418503')
+const email = ref('jj@swoopdata.com')
+const website = ref('https://swoopdata.com')
+const info = ref('')
 
-const name = ref('')
-const position = ref('')
-const officePhone = ref('')
-const mobilePhone = ref('')
-const email = ref('')
-const website = ref('')
+const rendererEl = ref<HTMLElement>()
+
+const renderer = computed(() => {
+    const props = {
+        name: name.value,
+        position: position.value,
+        officePhoneNumber: officePhone.value,
+        mobilePhoneNumber: mobilePhone.value,
+        emailAddress: email.value,
+        websiteUrl: website.value,
+        ...assets,
+    };
+
+    const compiledTemplate = compile(template, props);
+
+    const { html } = mjml2html(compiledTemplate);
+
+    return html
+})
+
+const path = 'https://swoopdata.sirv.com/Images';
 
 const assets = {
-    emailIcon: emailAsset,
-    logo: logoAsset,
-    officePhoneIcon: officePhoneAsset,
-    mobilePhoneIcon: mobilePhoneAsset,
-    webIcon: webAsset,
+    logoDark: `${path}/dark/logo.png`,
+    logoLight: `${path}/light/logo.png`,
+    emailIconDark: `${path}/dark/at.png`,
+    emailIconLight: `${path}/light/at.png`,
+    officePhoneIconDark: `${path}/dark/phone-ip.png`,
+    officePhoneIconLight: `${path}/light/phone-ip.png`,
+    mobilePhoneIconDark: `${path}/dark/phone.png`,
+    mobilePhoneIconLight: `${path}/light/phone.png`,
+    webIconDark: `${path}/dark/wikis.png`,
+    webIconLight: `${path}/light/wikis.png`,
 };
 
-function download(filename: string, text: string) {
+const download = () => {
+    const filename = `footer-${name.value.replace(' ', '-').toLowerCase()}.html`;
+
     var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(renderer.value));
     element.setAttribute('download', filename);
 
     element.style.display = 'none';
@@ -79,38 +143,76 @@ const compile = <TProps extends Record<string, string>>(template: string, props:
     });
 }
 
-const generate = () => {
-    // const htmlTemplateRenderer = compile(template);
+const copy = async () => {
 
-    const props = {
-        name: name.value,
-        position: position.value,
-        officePhoneNumber: officePhone.value,
-        mobilePhoneNumber: mobilePhone.value,
-        emailAddress: email.value,
-        websiteUrl: website.value,
-        ...assets,
-    };
+    const data = new Blob([renderer.value], { type: 'text/html' });
 
-    // const propDefs = Object.keys(props).reduce(
-    //     (obj, key) => ({ ...obj, [key]: { type: String, required: true } }),
-    //     {} as Record<string, { type: StringConstructor; required: boolean }>
-    // );
+    const item = new ClipboardItem({ 'text/html': data });
 
-    const htmlTemplate = compile(template, props);
+    await navigator.clipboard.write([item]).catch(e => console.error(e));
 
-    const filename = `footer-${props.name.replace(' ', '-').toLowerCase()}.html`;
-
-    console.info(
-        `✅ SUCCESS! Footer template ${filename} compiled.`
-    );
-    download(filename, htmlTemplate);
+    info.value = 'Copied to clipboard!'
 }
+
+// const generate = () => {
+//     // // const htmlTemplateRenderer = compile(template);
+
+//     // const props = {
+//     //     name: name.value,
+//     //     position: position.value,
+//     //     officePhoneNumber: officePhone.value,
+//     //     mobilePhoneNumber: mobilePhone.value,
+//     //     emailAddress: email.value,
+//     //     websiteUrl: website.value,
+//     //     ...assets,
+//     // };
+
+//     // // const propDefs = Object.keys(props).reduce(
+//     // //     (obj, key) => ({ ...obj, [key]: { type: String, required: true } }),
+//     // //     {} as Record<string, { type: StringConstructor; required: boolean }>
+//     // // );
+
+//     // const compiledTemplate = compile(template, props);
+
+//     // const { html: htmlTemplate } = mjml2html(compiledTemplate);
+
+//     // const filename = `footer-${props.name.replace(' ', '-').toLowerCase()}.html`;
+
+//     // console.info(
+//     //     `✅ SUCCESS! Footer template ${filename} compiled.`
+//     // );
+//     // // download(filename, htmlTemplate);
+//     // renderer.value = htmlTemplate
+// }
+
+// onMounted(() => {
+//     generate();
+// });
 
 </script>
 <style>
 body {
-    font-family: "sans-serif";
+    font-family: "Roboto", sans-serif;
+}
+.cnt {
+    display: flex;
+    gap: 2em;
+    padding: 2em;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.info {
+    padding: 1em;
+    background: #8dffaa;
+    color: rgba(0, 0, 0, 0.7);
+    border-radius: 2em;
+    text-align: center;
+}
+.instructions.title {
+    font-weight: 800;
 }
 .container {
     display: flex;
@@ -119,9 +221,16 @@ body {
     max-width: 30em;
     margin: 5em auto;
 }
+.renderer {
+    border: 1px solid #ccc;
+    padding: 1em;
+    margin: 1em 0;
+    flex: 1;
+}
 input {
     padding: 1em;
     border-radius: 2.5em;
+    border: 1px solid rgba(0, 0, 0, 0.2);
 }
 button {
     background: #00a8ff;
@@ -129,5 +238,16 @@ button {
     border: none;
     border-radius: 2.5em;
     padding: 1em;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #273140;
+        color: #fff;
+    }
+    input {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+    }
 }
 </style>

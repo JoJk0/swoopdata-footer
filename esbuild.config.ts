@@ -1,6 +1,5 @@
 import { build } from 'esbuild';
 import pluginVue from 'esbuild-plugin-vue-next';
-import inline from 'inline-css';
 import { resolve, dirname } from 'path';
 import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
@@ -9,23 +8,23 @@ const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = dirname(__filename);
 
-const template = readFileSync(resolve(__dirname, './src/footer.html'), 'utf8');
+// const template = readFileSync(resolve(__dirname, './src/footer.html'), 'utf8');
 
-const darkModeCss = readFileSync(resolve(__dirname, './src/dark.css'), 'utf8');
+// const darkModeCss = readFileSync(resolve(__dirname, './src/dark.css'), 'utf8');
 
-const inlinedTemplate = await inline(template, {
-  url: 'data:image/svg+xml;base64,',
-  removeStyleTags: false,
-  preserveMediaQueries: true,
-});
+// const inlinedTemplate = await inline(template, {
+//   url: 'data:image/svg+xml;base64,',
+//   removeStyleTags: false,
+//   preserveMediaQueries: true,
+// });
 
-const cssdTemplate =
-  inlinedTemplate.split('</style>')[0] +
-  `\n${darkModeCss}</style></body></html>`;
+// const cssdTemplate =
+//   inlinedTemplate.split('</style>')[0] +
+//   `\n${darkModeCss}</style></body></html>`;
 
-console.log(cssdTemplate);
+// console.log(cssdTemplate);
 
-writeFileSync('./src/generated/footer-inlined.html', cssdTemplate);
+// writeFileSync('./src/generated/footer-inlined.html', cssdTemplate);
 
 await build({
   entryPoints: ['./src/main.ts'],
@@ -36,6 +35,7 @@ await build({
   sourcemap: false,
   loader: {
     '.html': 'text',
+    '.mjml': 'text',
     '.svg': 'dataurl',
   },
   plugins: [pluginVue()],

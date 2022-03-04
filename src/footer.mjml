@@ -1,0 +1,185 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="Helvetica" />
+      <mj-class name="clause-text" font-size="12px" opacity="0.5" line-height="1.3" color="undefined" />
+      <mj-class name="message-body" font-size="14px" line-height="1.4" color="undefined" />
+      <mj-class name="foot-title" font-size="16px" font-weight="bold" line-height="0.1" color="undefined" />
+      <mj-class name="foot-position" font-size="16px" opacity="0.5" line-height="0.1" padding-bottom="20px" color="undefined" />
+      <mj-class name="logo" width="307.2px" height="60px" />
+      <mj-class name="icon" icon-height="32px" icon-padding="10px 0px" text-padding="10px" text-decoration="none" font-size="14px" color="undefined" />
+    </mj-attributes>
+    <mj-style>
+    a {
+      text-decoration: none !important;
+      color: #273140;
+    }
+    body {
+      background-color: #FFFFFF;
+      color: #273140;
+    }
+    .text {
+      color: #273140;
+    }
+    .semitransparent {
+      color: #98a4b8;
+    }
+    .dark {
+      display: none;
+    }
+    .light {
+      display: block;
+    }
+      @media (prefers-color-scheme: dark) {
+        a {
+          text-decoration: none !important;
+          color: #FFFFFF !important;
+        }
+        body {
+          background-color: #273140; !important
+          color: #FFFFFF !important;
+        }
+        .text {
+          color: #FFFFFF !important;
+        }
+        .semitransparent {
+          color: #697a94 !important;
+        }
+        .dark {
+          display: block !important;
+        }
+        .light {
+          display: none !important;
+        }
+      }
+    </mj-style>
+    <mj-raw>               
+      <meta name="color-scheme" content="light dark" />
+      <meta name="supported-color-schemes" content="light dark" />
+    </mj-raw>
+  </mj-head>
+  <mj-body>
+    <mj-wrapper mj-class="container">
+      <mj-section mj-class="foot">
+        <mj-column>
+          <mj-text mj-class="message-body" css-class="text">Enter your message here...</mj-text>
+          <mj-text mj-class="foot-title" css-class="text">{{ name }}</mj-text>
+          <mj-text mj-class="foot-position" css-class="semitransparent">{{ position }}</mj-text>
+
+          <mj-image src="{{ logoDark }}" mj-class="logo" css-class="dark" align="left" />
+          <mj-image src="{{ logoLight }}" mj-class="logo" css-class="light" align="left" />
+
+          <mj-social mj-class="contact" css-class="light" mode="vertical" align="left">
+            <mj-social-element src="{{ officePhoneIconLight }}" href="tel:{{ officePhoneNumber }}" mj-class="icon" css-class="text">
+              {{ officePhoneNumber }}
+            </mj-social-element>
+            <mj-social-element src="{{ mobilePhoneIconLight }}" href="tel:{{ mobilePhoneNumber }}" mj-class="icon" css-class="text">
+              {{ mobilePhoneNumber }}
+            </mj-social-element>
+            <mj-social-element src="{{ emailIconLight }}" href="mailto:{{ emailAddress }}" mj-class="icon" css-class="text">
+              {{ emailAddress }}
+            </mj-social-element>
+            <mj-social-element src="{{ webIconLight }}" href="{{ websiteUrl }}" mj-class="icon" css-class="text">
+              {{ websiteUrl }}
+            </mj-social-element>
+          </mj-social>
+          <mj-social mj-class="contact" css-class="dark" mode="vertical" align="left">
+            <mj-social-element src="{{ officePhoneIconDark }}" href="tel:{{ officePhoneNumber }}" mj-class="icon" css-class="text">
+              {{ officePhoneNumber }}
+            </mj-social-element>
+            <mj-social-element src="{{ mobilePhoneIconDark }}" href="tel:{{ mobilePhoneNumber }}" mj-class="icon" css-class="text">
+              {{ mobilePhoneNumber }}
+            </mj-social-element>
+            <mj-social-element src="{{ emailIconDark }}" href="mailto:{{ emailAddress }}" mj-class="icon" css-class="text">
+              {{ emailAddress }}
+            </mj-social-element>
+            <mj-social-element src="{{ webIconDark }}" href="{{ websiteUrl }}" mj-class="icon" css-class="text">
+              {{ websiteUrl }}
+            </mj-social-element>
+          </mj-social>
+
+          <mj-text mj-class="clause-text" css-class="semitransparent">
+            Confidentiality Notice | This e-mail message, including any
+            attachments, is for the sole use of the intended recipient(s) and may
+            contain confidential, proprietary, or legally privileged information.
+            Any unauthorised review, use, disclosure or distribution is prohibited
+            and may be unlawful. If you are not the intended recipient(s),
+            immediately contact the sender by reply e-mail and destroy all copies
+            and formats of the original message and any subsequent and/or related
+            messages. Nothing in this e-mail shall be construed as a
+            representation, commitment or undertaking by Swoop Datacom Ltd unless
+            expressly stated to be such.
+          </mj-text>
+          <mj-text mj-class="clause-text" css-class="semitransparent">
+            WARNING: Computer viruses can be transmitted by email. The recipient
+            should check this email and any attachments for the presence of
+            viruses. Swoop Datacom Ltd accepts no liability for any damage caused
+            by any virus transmitted by this email or any attachments. Please
+            consider the environment before printing this email.
+          </mj-text>
+          <mj-text mj-class="clause-text" css-class="semitransparent">
+            Swoop Datacom Ltd, Registered in England & Wales, Company No 09656787
+            Registered Office, The Rainhall Centre, Rainhall Road, Barnoldswick,
+            Lancashire, BB18 5DR Director and Secretary: Mr John Robert Bennett,
+            Director: Mr David Wilfred Kirsopp
+          </mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+    <!-- <mj-style type="text/css">
+      .foot {
+        margin: 2em 0;
+      }
+
+      .title {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 0.5em;
+      }
+
+      .position {
+        opacity: 0.5;
+      }
+
+      .container {
+        max-width: 70em;
+        padding: 2em;
+      }
+
+      .logo {
+        width: 25em;
+        margin: 2em 0;
+      }
+
+      .contacts {
+        margin: 2rem 0;
+      }
+
+      .contact {
+        margin: 1.5rem 0;
+      }
+
+      .contactText {
+        text-decoration: none;
+        color: unset;
+
+        display: inline-block;
+        padding: 0.25rem;
+        padding-left: 1rem;
+      }
+
+      .icon {
+        width: 1.75rem;
+        height: 1.75rem;
+        display: inline-block;
+        float: left;
+      }
+
+      .clause {
+        font-size: 0.8em;
+        color: #999;
+        margin: 2em 0;
+      }
+    </mj-style> -->
+  </mj-body>
+</mjml>
