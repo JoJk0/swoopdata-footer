@@ -6,94 +6,106 @@
       <mj-class name="message-body" font-size="14px" line-height="1.4" color="undefined" />
       <mj-class name="foot-title" font-size="16px" font-weight="bold" line-height="0.1" color="undefined" />
       <mj-class name="foot-position" font-size="16px" opacity="0.5" line-height="0.1" padding-bottom="20px" color="undefined" />
-      <mj-class name="logo" width="307.2px" height="60px" />
+      <mj-class name="logo" width="61.81px" height="60px" padding="0px" />
+      <mj-class name="logo-column" width="91.81px" height="60px" align="left" />
+      <mj-class name="logo-text" width="248.48px" height="60px" padding="0px" />
+      <mj-class name="logo-text-column" width="248.48px" height="60px" align="left" />
       <mj-class name="icon" icon-height="32px" icon-padding="10px 0px" text-padding="10px" text-decoration="none" font-size="14px" color="undefined" />
     </mj-attributes>
     <mj-style>
-    a {
-      text-decoration: none !important;
-      color: #273140;
-    }
-    body {
-      background-color: #FFFFFF;
-      color: #273140;
-    }
-    .text {
-      color: #273140;
-    }
-    .semitransparent {
-      color: #98a4b8;
-    }
-    .dark {
-      display: none;
-    }
-    .light {
-      display: block;
-    }
+      a {
+        text-decoration: none !important;
+        color: #273140;
+      }
+
+      body {
+        background-color: #FFFFFF;
+        color: #273140;
+      }
+
+      .text {
+        color: #273140;
+      }
+
+      .semitransparent {
+        color: #98a4b8;
+      }
+
+      .dark {
+        display: none;
+      }
+
+      .light {
+        display: block;
+      }
+
+      .left {
+        text-align: left !important;
+      }
+
       @media (prefers-color-scheme: dark) {
         a {
           text-decoration: none !important;
           color: #FFFFFF !important;
         }
+
         body {
-          background-color: #273140; !important
-          color: #FFFFFF !important;
+          background-color: #273140;
+           !important color: #FFFFFF !important;
         }
+
         .text {
           color: #FFFFFF !important;
         }
+
         .semitransparent {
           color: #697a94 !important;
         }
+
         .dark {
           display: block !important;
         }
+
         .light {
           display: none !important;
         }
       }
     </mj-style>
-    <mj-raw>               
-      <meta name="color-scheme" content="light dark" />
-      <meta name="supported-color-schemes" content="light dark" />
+    <mj-raw>
+      <meta name="color-scheme" content="light" />
+      <meta name="supported-color-schemes" content="light" />
     </mj-raw>
   </mj-head>
   <mj-body>
     <mj-wrapper mj-class="container">
-      <mj-section mj-class="foot">
+      <mj-section mj-class="content">
         <mj-column>
           <mj-text mj-class="message-body" css-class="text">Enter your message here...</mj-text>
           <mj-text mj-class="foot-title" css-class="text">{{ name }}</mj-text>
           <mj-text mj-class="foot-position" css-class="semitransparent">{{ position }}</mj-text>
-
-          <mj-image src="{{ logoDark }}" mj-class="logo" css-class="dark" align="left" />
-          <mj-image src="{{ logoLight }}" mj-class="logo" css-class="light" align="left" />
-
-          <mj-social mj-class="contact" css-class="light" mode="vertical" align="left">
-            <mj-social-element src="{{ officePhoneIconLight }}" href="tel:{{ officePhoneNumber }}" mj-class="icon" css-class="text">
+        </mj-column>
+      </mj-section>
+      <mj-section text-align="left" css-class="left">
+        <mj-column mj-class="logo-column" padding-left="30px">
+          <mj-image src="{{ logo }}" mj-class="logo" align="left" />
+        </mj-column>
+        <mj-column mj-class="logo-text-column">
+          <mj-image src="{{ logoText }}" mj-class="logo-text" align="left" alt="Swoop Datacom" />
+        </mj-column>
+      </mj-section>
+      <mj-section mj-class="foot">
+        <mj-column>
+          <mj-social mj-class="contact" mode="vertical" align="left">
+            <mj-social-element src="{{ officePhoneIcon }}" href="tel:{{ officePhoneNumber }}" mj-class="icon" alt="Office" css-class="text">
               {{ officePhoneNumber }}
             </mj-social-element>
-            <mj-social-element src="{{ mobilePhoneIconLight }}" href="tel:{{ mobilePhoneNumber }}" mj-class="icon" css-class="text">
+            <mj-social-element src="{{ mobilePhoneIcon }}" href="tel:{{ mobilePhoneNumber }}" mj-class="icon" alt="Mobile" css-class="text">
               {{ mobilePhoneNumber }}
             </mj-social-element>
-            <mj-social-element src="{{ emailIconLight }}" href="mailto:{{ emailAddress }}" mj-class="icon" css-class="text">
+            <mj-social-element src="{{ emailIcon }}" href="mailto:{{ emailAddress }}" mj-class="icon" alt="Email" css-class="text">
               {{ emailAddress }}
             </mj-social-element>
-            <mj-social-element src="{{ webIconLight }}" href="{{ websiteUrl }}" mj-class="icon" css-class="text">
-              {{ websiteUrl }}
-            </mj-social-element>
-          </mj-social>
-          <mj-social mj-class="contact" css-class="dark" mode="vertical" align="left">
-            <mj-social-element src="{{ officePhoneIconDark }}" href="tel:{{ officePhoneNumber }}" mj-class="icon" css-class="text">
-              {{ officePhoneNumber }}
-            </mj-social-element>
-            <mj-social-element src="{{ mobilePhoneIconDark }}" href="tel:{{ mobilePhoneNumber }}" mj-class="icon" css-class="text">
-              {{ mobilePhoneNumber }}
-            </mj-social-element>
-            <mj-social-element src="{{ emailIconDark }}" href="mailto:{{ emailAddress }}" mj-class="icon" css-class="text">
-              {{ emailAddress }}
-            </mj-social-element>
-            <mj-social-element src="{{ webIconDark }}" href="{{ websiteUrl }}" mj-class="icon" css-class="text">
+            <mj-social-element src="{{ webIcon }}" href="{{ websiteUrl }}" mj-class="icon" alt="Website" css-class="text">
               {{ websiteUrl }}
             </mj-social-element>
           </mj-social>
@@ -126,60 +138,5 @@
         </mj-column>
       </mj-section>
     </mj-wrapper>
-    <!-- <mj-style type="text/css">
-      .foot {
-        margin: 2em 0;
-      }
-
-      .title {
-        font-size: 1.5em;
-        font-weight: bold;
-        margin-bottom: 0.5em;
-      }
-
-      .position {
-        opacity: 0.5;
-      }
-
-      .container {
-        max-width: 70em;
-        padding: 2em;
-      }
-
-      .logo {
-        width: 25em;
-        margin: 2em 0;
-      }
-
-      .contacts {
-        margin: 2rem 0;
-      }
-
-      .contact {
-        margin: 1.5rem 0;
-      }
-
-      .contactText {
-        text-decoration: none;
-        color: unset;
-
-        display: inline-block;
-        padding: 0.25rem;
-        padding-left: 1rem;
-      }
-
-      .icon {
-        width: 1.75rem;
-        height: 1.75rem;
-        display: inline-block;
-        float: left;
-      }
-
-      .clause {
-        font-size: 0.8em;
-        color: #999;
-        margin: 2em 0;
-      }
-    </mj-style> -->
   </mj-body>
 </mjml>

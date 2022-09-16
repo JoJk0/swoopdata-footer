@@ -75,12 +75,20 @@ import template from './footer.mjml';
 
 import mjml2html from 'mjml-browser';
 
-const name = ref('Jakub Janisz')
-const position = ref('Full-Stack Developer')
-const officePhone = ref('+447946418503')
-const mobilePhone = ref('+447946418503')
-const email = ref('jj@swoopdata.com')
-const website = ref('https://swoopdata.com')
+const name = ref('')
+const position = ref('')
+const officePhone = ref('')
+const mobilePhone = ref('')
+const email = ref('')
+const website = ref('')
+
+// const name = ref('Jakub Janisz')
+// const position = ref('Full-Stack Developer')
+// const officePhone = ref('+447946418503')
+// const mobilePhone = ref('+447946418503')
+// const email = ref('jj@swoopdata.com')
+// const website = ref('https://swoopdata.com')
+
 const info = ref('')
 
 const rendererEl = ref<HTMLElement>()
@@ -106,16 +114,12 @@ const renderer = computed(() => {
 const path = 'https://swoopdata.sirv.com/Images';
 
 const assets = {
-    logoDark: `${path}/dark/logo.png`,
-    logoLight: `${path}/light/logo.png`,
-    emailIconDark: `${path}/dark/at.png`,
-    emailIconLight: `${path}/light/at.png`,
-    officePhoneIconDark: `${path}/dark/phone-ip.png`,
-    officePhoneIconLight: `${path}/light/phone-ip.png`,
-    mobilePhoneIconDark: `${path}/dark/phone.png`,
-    mobilePhoneIconLight: `${path}/light/phone.png`,
-    webIconDark: `${path}/dark/wikis.png`,
-    webIconLight: `${path}/light/wikis.png`,
+    logo: `${path}/png/logo.png`,
+    logoText: `${path}/png/logo-text.png`,
+    emailIcon: `${path}/png/at.png`,
+    officePhoneIcon: `${path}/png/phone-ip.png`,
+    mobilePhoneIcon: `${path}/png/phone.png`,
+    webIcon: `${path}/png/wikis.png`,
 };
 
 const download = () => {
@@ -126,6 +130,7 @@ const download = () => {
     element.setAttribute('download', filename);
 
     element.style.display = 'none';
+    document.body.appendChild(element);
     document.body.appendChild(element);
 
     element.click();
